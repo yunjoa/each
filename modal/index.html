@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+</head>
+<body>
+
+    
+    <button id=openBtn>Open Modal</button>
+    <div class="modal hidden">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <i id="closeBtn" class="fas fa-times"></i>
+            </div>
+            <p class="modal__txt">I'm a modal</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    const openBtn = document.getElementById("openBtn");
+    const modal = document.querySelector(".modal");
+    const overlay = document.querySelector(".modal__overlay");
+    const closeBtn = document.getElementById("closeBtn")
+
+    const openModal = () => {
+        modal.classList.remove("hidden")
+    }
+    const closeModal = () => {
+        modal.classList.add("hidden")
+    }
+    overlay.addEventListener("click", closeModal)
+    closeBtn.addEventListener("click", closeModal)
+    openBtn.addEventListener("click", openModal)
+</script>
+</html>
