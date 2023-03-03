@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unit Box ( ღ'ᴗ'ღ )</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link
-      rel="stylesheet"
-      href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"
-    />
 
     <meta property="og:title" content="Unit Box" />
     <meta property="og:url" content="https://yunjoa.github.io/each/" />
@@ -27,6 +21,14 @@
       content="https://i.pinimg.com/originals/8d/c5/3c/8dc53c773822ef5779095fb71ab7a97d.jpg"
     />
     <meta name="twitter:description" content="My Fav Units @yunjoa" />
+
+    <title>Unit Box ( ღ'ᴗ'ღ )</title>
+
+    <link rel="stylesheet" href="reset.css" />
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"
+    />
 
     <link rel="shortcut icon" href="source/favicon.ico" />
     <link
@@ -56,8 +58,8 @@
             <li>smooth-scroll</li>
             <li>hover-search</li>
             <li>modal</li>
-            <li>리스트업4</li>
-            <li>리스트업1</li>
+            <li>paint</li>
+            <li>responsive-navbar</li>
             <li>리스트업2</li>
             <li>리스트업3</li>
             <li>리스트업4</li>
@@ -91,6 +93,14 @@
             <li>리스트업4ddd</li>
           </ul>
           <div class="demonstration">
+            <div class="newWindow">
+              <a
+                href="https://yunjoa.github.io/each/units/smooth-scroll.html"
+                target="_blank"
+                >Click
+              </a>
+            </div>
+
             <iframe
               class="frame"
               title="smooth-scroll"
@@ -134,6 +144,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 20%;
     }
     .title {
       font-size: 2em;
@@ -191,7 +202,6 @@
     .search-box:not(:focus) {
       text-indent: -5000px;
     }
-    /* for more-graceful falling back (:not browsers likely support indent) */
 
     #search-submit {
       position: relative;
@@ -208,7 +218,7 @@
 
     section {
       display: flex;
-      height: 87%;
+      height: 80%;
     }
     .list {
       border: 1px solid black;
@@ -242,7 +252,29 @@
     .demonstration {
       width: 50%;
       padding-left: 20px;
+      position: relative;
     }
+    .newWindow {
+      background-color: black;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      position: absolute;
+      bottom: 3%;
+      right: 5%;
+      text-align: center;
+      line-height: 50px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+    .newWindow:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+    .newWindow a {
+      text-decoration: none;
+      color: white;
+    }
+
     .demonstration iframe {
       width: 100%;
       height: 100%;
@@ -284,6 +316,10 @@
         let unit = $(this).text();
         $("iframe").attr("src", "./units/" + unit + ".html");
         $("iframe").attr("title", unit);
+        $(".newWindow a").attr(
+          "href",
+          "https://yunjoa.github.io/each/units/" + unit + ".html"
+        );
       });
       $(".list li").dblclick(function () {
         let iframeHTML = $("iframe").contents().find("html").html();

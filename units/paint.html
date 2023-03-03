@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>paint</title>
+    <link rel="stylesheet" href="../reset.css" />
+  </head>
+  <body>
+    <canvas id="jsCanvas" class="canvas"></canvas>
+    <div class="controls">
+      <div class="controls__range">
+        <input
+          type="range"
+          id="jsRange"
+          min="0.1"
+          max="5.0"
+          value="2.5"
+          step="0.1"
+        />
+      </div>
+      <div class="controls__btns">
+        <button id="jsMode">fill</button>
+        <button id="jsSave">save</button>
+      </div>
+      <div class="controls__colors" id="jsColors">
+        <div
+          class="controls__color jsColor"
+          style="background-color: black"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: white"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: red"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: orange"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: yellow"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: green"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: skyblue"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: blue"
+        ></div>
+        <div
+          class="controls__color jsColor"
+          style="background-color: purple"
+        ></div>
+      </div>
+    </div>
+    <style>
+      body {
+        background-color: #f6f9fc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 0;
+      }
+
+      .canvas {
+        width: 400px;
+        height: 400px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      .controls {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .controls .controls__btns {
+        margin-bottom: 30px;
+      }
+
+      .controls__btns button {
+        all: unset;
+        cursor: pointer;
+        background-color: white;
+        padding: 5px 10px;
+        width: 80px;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 0, 0.8);
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 12px;
+      }
+
+      .controls__btns button:active {
+        transform: scale(0.98);
+      }
+
+      .controls .controls__colors {
+        display: flex;
+      }
+
+      .controls__colors .controls__color {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      .controls .controls__range {
+        margin-bottom: 30px;
+      }
+    </style>
+    <script>
+      const canvas = document.getElementById("jsCanvas");
+      const ctx = canvas.getContext("2d");
+      const colors = document.getElementsByClassName("jsColor");
+      const range = document.getElementById("jsRange");
+      const mode = document.getElementById("jsMode");
+      const saveBtn = document.getElementById("jsSave");
+
+      canvas.width = 400;
+      canvas.height = 400;
+
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, 400, 400);
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = "2.5";
+      ctx.fillStyle = "black";
+      // ctx.fillRect(50, 20, 100, 49)
+
+      let painting = false;
+      let filling = false;
+
+      function stopPainting() {
+        painting = false;
+      }
+
+      function startPainting() {
+        painting = true;
+      }
+
+      function onMouseMove(event) {
+        const x = event.offsetX;
+        const y = event.offsetY;
+        if (!painting) {
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+      }
+
+      function handleColorClick(event) {
+        const color = event.target.style.backgroundColor;
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+      }
+
+      function handleRangeChange(event) {
+        strokeSize = event.target.value;
+        ctx.lineWidth = event.target.value;
+      }
+
+      function handleModeClick() {
+        if (filling == true) {
+          filling = false;
+          mode.innerText = "Fill";
+        } else {
+          filling = true;
+          mode.innerText = "Paint";
+        }
+      }
+
+      function handleCanvasClick() {
+        if (filling) {
+          ctx.fillRect(0, 0, 700, 700);
+        }
+      }
+
+      function handleCM(event) {
+        event.preventDefault();
+      }
+
+      function handleSaveClick() {
+        const image = canvas.toDataURL();
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = "PaintJS[Export] 👩🏻‍🏫";
+        link.click();
+      }
+
+      if (canvas) {
+        canvas.addEventListener("mousemove", onMouseMove);
+        canvas.addEventListener("mousedown", startPainting);
+        canvas.addEventListener("mouseup", stopPainting);
+        canvas.addEventListener("mouseleave", stopPainting);
+        canvas.addEventListener("click", handleCanvasClick);
+        canvas.addEventListener("contextmenu", handleCM);
+      }
+
+      Array.from(colors).forEach((color) =>
+        color.addEventListener("click", handleColorClick)
+      );
+
+      if (range) {
+        range.addEventListener("input", handleRangeChange);
+      }
+
+      if (mode) {
+        mode.addEventListener("click", handleModeClick);
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener("click", handleSaveClick);
+      }
+    </script>
+  </body>
+</html>
