@@ -10,6 +10,30 @@
       rel="stylesheet"
       href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"
     />
+
+    <meta property="og:title" content="Unit Box" />
+    <meta property="og:url" content="https://yunjoa.github.io/each/" />
+    <meta
+      property="og:image"
+      content="https://i.pinimg.com/originals/8d/c5/3c/8dc53c773822ef5779095fb71ab7a97d.jpg"
+    />
+    <meta property="og:description" content="My Fav Units @yunjoa" />
+
+    <meta name="twitter:card" content="Unit Box" />
+    <meta name="twitter:title" content="Unit Box" />
+    <meta name="twitter:url" content="https://yunjoa.github.io/each/" />
+    <meta
+      name="twitter:image"
+      content="https://i.pinimg.com/originals/8d/c5/3c/8dc53c773822ef5779095fb71ab7a97d.jpg"
+    />
+    <meta name="twitter:description" content="My Fav Units @yunjoa" />
+
+    <link rel="shortcut icon" href="source/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="source/apple-icon-114x114.png"
+    />
   </head>
   <body>
     <div class="cont-wrap">
@@ -68,7 +92,8 @@
           </ul>
           <div class="demonstration">
             <iframe
-              title="Wikipedia page for Avocados"
+              class="frame"
+              title="smooth-scroll"
               src="./units/smooth-scroll.html"
             ></iframe>
           </div>
@@ -244,8 +269,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script>
-    //검색
     $(document).ready(function () {
+      //검색
       $("#search-box").keyup(function () {
         let search = $(this).val();
         $(".list li").hide();
@@ -253,40 +278,40 @@
         let result = $(".list > li:contains('" + search + "')");
         result.show();
       });
-    });
 
-    // 클릭, 더블클릭
-    $(".list li").click(function () {
-      let unit = $(this).text();
-      $("iframe").attr("src", "./units/" + unit + ".html");
-    });
-    $(".list li").dblclick(function () {
-      let iframeHTML = $("iframe").contents().find("html").html();
-
-      copyToClipboard(iframeHTML);
-      console.log(iframeHTML);
-      sAlert("코드가 복사되었습니다!");
-    });
-
-    // 클립보드 복사
-    function copyToClipboard(val) {
-      var t = document.createElement("textarea");
-      document.body.appendChild(t);
-      t.value = val;
-      t.select();
-      document.execCommand("copy");
-      document.body.removeChild(t);
-    }
-
-    //alert
-    function sAlert(txt) {
-      Swal.fire({
-        icon: "success",
-        title: "copied",
-        text: txt,
-        confirmButtonText: "닫기",
-        confirmButtonColor: "#a5dc86",
+      // 클릭, 더블클릭
+      $(".list li").click(function () {
+        let unit = $(this).text();
+        $("iframe").attr("src", "./units/" + unit + ".html");
+        $("iframe").attr("title", unit);
       });
-    }
+      $(".list li").dblclick(function () {
+        let iframeHTML = $("iframe").contents().find("html").html();
+        copyToClipboard(iframeHTML);
+        console.log(iframeHTML);
+        sAlert("코드가 복사되었습니다!");
+      });
+
+      // 클립보드 복사
+      function copyToClipboard(val) {
+        var t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand("copy");
+        document.body.removeChild(t);
+      }
+
+      //alert
+      function sAlert(txt) {
+        Swal.fire({
+          icon: "success",
+          title: "copied",
+          text: txt,
+          confirmButtonText: "닫기",
+          confirmButtonColor: "#a5dc86",
+        });
+      }
+    });
   </script>
 </html>
