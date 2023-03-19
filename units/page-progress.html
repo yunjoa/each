@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PAGE Progrees Bar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <progress id="progress" value="" min="0" max="100"></progress>
+  </body>
+  <style>
+    body {
+      height: 500vh;
+      position: relative;
+      background-color: beige;
+    }
+    #progress {
+      appearance: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      height: 4px;
+    }
+    #progress::-webkit-progress-bar {
+      background: #ffffff;
+      box-shadow: inset 3px 3px 10px rgba(208, 208, 208, 0.091);
+    }
+    #progress::-webkit-progress-value {
+      background: #000000;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script>
+    $(window).scroll(function () {
+      var wins = $(this).scrollTop();
+      var hei = $("body").outerHeight(); //전체 페이지 높이
+      var hei2 = $(window).outerHeight(); //윈도우의 높이
+      var height = hei - hei2;
+      var bar = (wins / height) * 100;
+      $("#progress").val(bar);
+    });
+  </script>
+</html>

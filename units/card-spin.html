@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Spin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card spin"></div>
+    </div>
+  </body>
+  <style>
+    body {
+      background-color: rgba(224, 231, 99, 0.556);
+      position: relative;
+      height: 100vh;
+    }
+    .wrap {
+      display: block;
+      width: 800px;
+      height: 500px;
+      position: absolute;
+      top: 70%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+    }
+    .card {
+      position: relative;
+
+      display: inline-block;
+      width: 80px;
+      height: 100px;
+      background: #7985e2;
+      transform: rotate(25deg);
+      font-size: 80px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .spin {
+      animation-name: spin;
+      -webkit-animation-name: spin;
+      animation-duration: 8s;
+      -animation-duration: 8s;
+      animation-delay: 0s;
+      -animation-delay: 0s;
+      animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotateY(0deg) rotate(25deg);
+        background: #7985e2;
+      }
+      24% {
+        transform: rotateY(89deg) rotate(25deg);
+        background: #7985e2;
+      }
+      25% {
+        transform: rotateY(89deg) rotate(25deg);
+        background: blue;
+      }
+      50% {
+        transform: rotateY(0deg) rotate(25deg);
+        background: blue;
+      }
+      74% {
+        transform: rotateY(89deg) rotate(25deg);
+        background: blue;
+      }
+      75% {
+        transform: rotateY(89deg) rotate(25deg);
+        background: #7985e2;
+      }
+      100% {
+        transform: rotateY(1deg) rotate(25deg);
+        background: #7985e2;
+      }
+    }
+  </style>
+</html>
