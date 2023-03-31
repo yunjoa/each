@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scroll-snap</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="support-scrollsnap"></div>
+
+    <div class="scroll-container">
+      <div class="scroll-area">1</div>
+      <div class="scroll-area">2</div>
+      <div class="scroll-area">3</div>
+      <div class="scroll-area">4</div>
+    </div>
+  </body>
+  <style>
+    .scroll-container {
+      overflow: auto;
+      scroll-snap-type: y mandatory; /* 부모 적용 */
+    }
+
+    .scroll-area {
+      scroll-snap-align: start; /* 자식 적용 */
+    }
+
+    /* 여기서부턴 단순 꾸미기 */
+    html {
+      background: #f2f2f2;
+    }
+
+    .scroll-container,
+    .scroll-area {
+      max-width: 850px;
+      height: 600px;
+      font-size: 60px;
+    }
+
+    .scroll-container,
+    .scroll-area {
+      margin: 0 auto;
+    }
+
+    .scroll-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .scroll-area:nth-of-type(1) {
+      background: #49b293;
+    }
+
+    .scroll-area:nth-of-type(2) {
+      background: #c94e4b;
+    }
+
+    .scroll-area:nth-of-type(3) {
+      background: #4cc1be;
+    }
+
+    .scroll-area:nth-of-type(4) {
+      background: #8360a6;
+    }
+  </style>
+</html>
