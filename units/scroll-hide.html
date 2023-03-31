@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scroll-hide</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum numquam
+    consequuntur, doloribus sit delectus labore accusantium expedita quam
+    ducimus sunt dignissimos nulla impedit enim ea nemo, eligendi, placeat
+    molestiae. Quae. <br /><br /><br /><br />Scroll down
+  </body>
+  <style>
+    body {
+      height: 1000vh;
+      padding: 20%;
+      background: linear-gradient(0deg, yellow, lightGreen);
+      overflow: scsroll;
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Opera */
+    }
+  </style>
+</html>
